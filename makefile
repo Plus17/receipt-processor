@@ -25,7 +25,7 @@ ci:
 #### Development Commands
 
 run:
-	docker-compose run --rm --service-ports rails sh -c "rails s"
+	docker-compose run --rm --service-ports rails sh -c "bin/run"
 
 shell:
 	docker-compose run --rm rails bash
