@@ -11,6 +11,9 @@ bundle.install:
 db.setup:
 	docker-compose run --rm --service-ports rails sh -c "rails db:setup"
 
+db.migrate:
+	docker-compose run --rm --service-ports rails sh -c "bin/db-migrate"
+
 db.seed:
 	docker-compose run --rm --service-ports rails sh -c "rails db:seed"
 
@@ -30,5 +33,7 @@ shell:
 console:
 	docker-compose run --rm rails sh -c "rails c"
 
+routes:
+	docker-compose run --rm -T --no-deps rails sh -c "rails routes"
 
 .PHONY: ci
