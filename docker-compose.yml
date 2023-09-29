@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  rails:
+    image: plus17/rails-dev-environment:3.1.2-7.0.3
+    # {EXPOSE_TO:DOCKER_PORT}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app/src
+      - bundle:/usr/local/bundle
+    depends_on:
+      - postgres
+      - redis
+    working_dir: /app/src
+
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - ${DATABASE_EXTERNAL_PORT:-5432}:5432
+    volumes:
+      - db-volume:/var/lib/postgresql/data/pgdata
+    restart: always
+    # In Postgres 12, there is no default value for the password.
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+  redis:
+    image: redis:6
+    ports:
+      - 6379:6379
+
+volumes:
+  bundle:
+  db-volume:
