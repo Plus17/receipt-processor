@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  post "/receipts/process", to: "receipts#create", as: :receipts
+  get "/receipts/:id/points", to: "receipts#show", as: :receipt_points
 end
