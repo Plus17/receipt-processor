@@ -32,7 +32,7 @@ class ReceiptPointCalculatorTest < ActiveSupport::TestCase
     assert_equal 28, points_calculator.calculate_points
   end
 
-  test "calculates points for a receipt with an odd day" do
+  test "calculates points for a receipt with bonus" do
     receipt_json = '{
       "retailer": "M&M Corner Market",
       "purchaseDate": "2022-03-20",

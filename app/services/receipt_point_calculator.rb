@@ -5,7 +5,7 @@ class ReceiptPointCalculator
     @bonus_time_start = Time.parse("14:00")
     @bonus_time_end = Time.parse("16:00")
   end
-  
+
   def calculate_points
     [
       retailer_points,
@@ -15,7 +15,7 @@ class ReceiptPointCalculator
       purchase_time_points
     ].sum
   end
-  
+
   private
 
   attr_reader :receipt, :bonus_time_start, :bonus_time_end
@@ -23,7 +23,7 @@ class ReceiptPointCalculator
   def retailer_points
     receipt["retailer"].scan(/[a-zA-Z0-9]/).count
   end
-  
+
   def total_points
     total = receipt["total"].to_f
     points = 0
