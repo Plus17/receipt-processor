@@ -16,10 +16,6 @@ class ReceiptPointCalculator
     ].sum
   end
 
-  private
-
-  attr_reader :receipt, :bonus_time_start, :bonus_time_end
-
   def retailer_points
     receipt["retailer"].scan(/[a-zA-Z0-9]/).count
   end
@@ -49,4 +45,8 @@ class ReceiptPointCalculator
   def purchase_time_points
     Time.parse(receipt["purchaseTime"]).between?(bonus_time_start, bonus_time_end) ? 10 : 0
   end
+
+  private
+
+  attr_reader :receipt, :bonus_time_start, :bonus_time_end
 end
